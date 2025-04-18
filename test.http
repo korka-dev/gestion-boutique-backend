@@ -1,0 +1,49 @@
+@baseUrl = http://localhost:5000/api
+@clientId = 
+@debtId = 
+
+### Test de connexion à l'API
+GET {{baseUrl}}/clients HTTP/1.1
+
+### Créer un nouveau client sans dette initiale
+POST {{baseUrl}}/clients HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Jean Dupont",
+  "phone": "0612345678",
+  "deposit": 100
+}
+
+### Créer un nouveau client avec dette initiale
+POST {{baseUrl}}/clients HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Marie Martin",
+  "phone": "0687654321",
+  "deposit": 50,
+  "initialDebt": 200,
+  "initialProductName": "TV Samsung"
+}
+
+### Récupérer tous les clients
+GET {{baseUrl}}/clients HTTP/1.1
+
+### Récupérer un client spécifique par ID (remplacer par un ID valide)
+GET {{baseUrl}}/clients/{{clientId}} HTTP/1.1
+
+### Ajouter une dette à un client (remplacer par un ID valide)
+POST {{baseUrl}}/clients/{{clientId}}/debts HTTP/1.1
+Content-Type: application/json
+
+{
+  "amount": 150,
+  "productName": "Smartphone Xiaomi"
+}
+
+### Marquer une dette comme payée (remplacer les IDs)
+PUT {{baseUrl}}/clients/{{clientId}}/debts/{{debtId}}/pay HTTP/1.1
+Content-Type: application/json
+
+{}
